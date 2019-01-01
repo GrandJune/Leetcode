@@ -41,3 +41,28 @@ class Solution(object):
 
         res.reverse()
         return res
+
+# 稍微简洁了一下
+class Solution(object):
+    def levelOrderBottom(self, root):
+        """
+        :type root: TreeNode
+        :rtype: List[List[int]]
+        """
+        if not root:
+            return []
+        res = []
+        cur = [root]
+        while cur:
+            temp = []
+            next_cur = []
+            for node in cur:
+                temp.append(node.val)
+                if node.left:
+                    next_cur.append(node.left)
+                if node.right:
+                    next_cur.append(node.right)
+            cur = next_cur
+            res.append(temp)
+        res.reverse()
+        return res
